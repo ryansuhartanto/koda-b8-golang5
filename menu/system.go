@@ -13,6 +13,7 @@ type System struct{}
 
 var (
 	loggedInOptions = []Menu{
+		ListAllUsers{},
 		Logout{},
 	}
 	loggedOutOptions = []Menu{
