@@ -12,7 +12,9 @@ import (
 type System struct{}
 
 var (
-	loggedInOptions  = []Menu{}
+	loggedInOptions = []Menu{
+		Logout{},
+	}
 	loggedOutOptions = []Menu{
 		Register{},
 		Login{},
