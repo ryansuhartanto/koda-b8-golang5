@@ -9,9 +9,7 @@ import (
 	"github.com/ryansuhartanto/koda-b8-golang5/data"
 )
 
-type System struct {
-	LoggedIn bool
-}
+type System struct{}
 
 var (
 	loggedInOptions  = []Menu{}
@@ -22,8 +20,8 @@ var (
 	}
 )
 
-func (this System) GetOptions() []Menu {
-	if this.LoggedIn {
+func (this System) GetOptions(loggedIn bool) []Menu {
+	if loggedIn {
 		return loggedInOptions
 	} else {
 		return loggedOutOptions
@@ -40,8 +38,12 @@ func (this System) Handle(scanner *bufio.Scanner, database data.Database) *Menu 
 
 	defer HandlePanic(scanner, "Wrong selection, press enter to back...")
 
-	options := this.GetOptions()
+	current := database.Current
+	options := this.GetOptions(current != nil)
 
+	if current != nil {
+		fmt.Printf("Hello, %v!", current.First)
+	}
 	for index, option := range options {
 		fmt.Printf("%v. %v\n", index+1, option.Name())
 	}

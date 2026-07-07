@@ -2,7 +2,10 @@ package data
 
 import "slices"
 
-type Database []User
+type Database struct {
+	Current *User
+	Users   []User
+}
 
 func (this *Database) Register(
 	first string,
@@ -17,14 +20,14 @@ func (this *Database) Register(
 		password,
 	)
 
-	*this = append(*this, *user)
+	this.Users = append(this.Users, *user)
 }
 
 func (this *Database) Login(
 	email string,
 	password string,
-) *User {
-	index := slices.IndexFunc(*this, func(user User) bool {
+) {
+	index := slices.IndexFunc(this.Users, func(user User) bool {
 		return user.Auth(email, password)
 	})
 
@@ -32,5 +35,9 @@ func (this *Database) Login(
 		panic("")
 	}
 
-	return &(*this)[index]
+	this.Current = &this.Users[index]
+}
+
+func (this *Database) Logout() {
+	this.Current = nil
 }
