@@ -38,6 +38,27 @@ func (this *Database) Login(
 	this.Current = &this.Users[index]
 }
 
+func (this *Database) ForgotPassword(
+	email string,
+	auth bool,
+) *User {
+	index := slices.IndexFunc(this.Users, func(user User) bool {
+		return user.Email == email
+	})
+
+	if index == -1 {
+		panic("")
+	}
+
+	user := this.Users[index]
+
+	if !auth {
+		panic("")
+	}
+
+	return &user
+}
+
 func (this *Database) Logout() {
 	this.Current = nil
 }

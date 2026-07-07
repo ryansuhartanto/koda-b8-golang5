@@ -33,3 +33,9 @@ func (this *User) Auth(
 
 	return this.Email == email && this.Password == passwordHash
 }
+
+func (this *User) ChangePassword(password string) {
+	passwordHash := md5.Sum([]byte(password))
+
+	this.Password = passwordHash
+}
