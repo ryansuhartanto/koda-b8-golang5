@@ -50,13 +50,13 @@ func (this *Database) ForgotPassword(
 		panic("")
 	}
 
-	user := this.Users[index]
+	user := &this.Users[index]
 
 	if !auth {
 		panic("")
 	}
 
-	return &user
+	return user
 }
 
 func (this *Database) Logout() {
