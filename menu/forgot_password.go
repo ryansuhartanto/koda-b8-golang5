@@ -15,7 +15,7 @@ func (this ForgotPassword) Name() string {
 }
 
 func (this ForgotPassword) Handle(scanner *bufio.Scanner, database *data.Database) (menu Menu) {
-	fmt.Println("--- Register ---")
+	fmt.Println("--- Forgot Password ---")
 	fmt.Println()
 
 	menu = this
