@@ -31,7 +31,7 @@ func (this Login) Handle(scanner *bufio.Scanner, database *data.Database) (menu 
 
 	database.Login(email, password)
 
-	fmt.Print("Logged-in successfully...")
+	fmt.Print("Logged-in successfully, press enter to go back...")
 	scanner.Scan()
 
 	return nil

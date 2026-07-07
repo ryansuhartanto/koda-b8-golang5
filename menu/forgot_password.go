@@ -50,7 +50,7 @@ func (this ForgotPassword) Handle(scanner *bufio.Scanner, database *data.Databas
 
 	user.ChangePassword(password)
 
-	fmt.Print("Password successfully changed...")
+	fmt.Print("Password successfully changed, press enter to go back...")
 	scanner.Scan()
 
 	return nil

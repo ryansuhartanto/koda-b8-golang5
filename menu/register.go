@@ -70,5 +70,8 @@ func (this Register) Handle(scanner *bufio.Scanner, database *data.Database) (me
 
 	database.Register(first, last, email, password)
 
+	fmt.Print("Registered successfully, press enter to go back...")
+	scanner.Scan()
+
 	return nil
 }

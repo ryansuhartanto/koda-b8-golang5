@@ -17,7 +17,7 @@ func (this Logout) Name() string {
 func (this Logout) Handle(scanner *bufio.Scanner, database *data.Database) (menu Menu) {
 	database.Logout()
 
-	fmt.Print("Logged-out successfully...")
+	fmt.Print("Logged-out successfully, press enter to go back...")
 	scanner.Scan()
 
 	return nil
