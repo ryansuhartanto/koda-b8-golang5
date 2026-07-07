@@ -10,9 +10,9 @@ type Menu interface {
 	Handle(scanner *bufio.Scanner) *Menu
 }
 
-func HandlePanic(scanner *bufio.Scanner) {
+func HandlePanic(scanner *bufio.Scanner, message string) {
 	if r := recover(); r != nil {
-		fmt.Print(r, " ")
+		fmt.Print(message, " ")
 		scanner.Scan()
 	}
 }

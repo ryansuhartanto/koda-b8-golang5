@@ -3,6 +3,7 @@ package menu
 import (
 	"bufio"
 	"fmt"
+	"os"
 	"strconv"
 )
 
@@ -24,7 +25,7 @@ func (this System) Handle(scanner *bufio.Scanner) *Menu {
 	fmt.Println("--- Welcome to system ---")
 	fmt.Println()
 
-	defer HandlePanic(scanner)
+	defer HandlePanic(scanner, "Wrong selection, press enter to back...")
 
 	for index, option := range systemOptions {
 		fmt.Printf("%v. %v\n", index+1, option.Name())
@@ -36,13 +37,15 @@ func (this System) Handle(scanner *bufio.Scanner) *Menu {
 
 	fmt.Print("Choose a menu: ")
 	scanner.Scan()
-	option, err := strconv.Atoi(scanner.Text())
+	selected, err := strconv.Atoi(scanner.Text())
 
 	if err != nil {
-		panic("Wrong selection, press enter to back... ")
+		panic(err)
 	}
 
-	option -= 1
+	if selected == 0 {
+		os.Exit(0)
+	}
 
-	return nil
+	return &systemOptions[selected-1]
 }
