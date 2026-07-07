@@ -1,12 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+
+	"github.com/ryansuhartanto/koda-b8-golang5/menu"
+)
 
 func main() {
-	System()
-}
+	scanner := bufio.NewScanner(os.Stdin)
+	system := menu.System{}
 
-func System() {
-	fmt.Println("--- Welcome to system ---")
+	var menu menu.Menu
 
+	for true {
+		fmt.Print("\033c")
+
+		if menu == nil {
+			menu = system
+		}
+
+		menu.Handle(scanner)
+	}
 }
