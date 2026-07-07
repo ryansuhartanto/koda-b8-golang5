@@ -3,6 +3,7 @@ package menu
 import (
 	"bufio"
 	"fmt"
+	"strings"
 
 	"github.com/ryansuhartanto/koda-b8-golang5/data"
 )
@@ -17,6 +18,8 @@ func (this Register) Name() string {
 func (this Register) Handle(scanner *bufio.Scanner, database data.Database) (menu Menu) {
 	fmt.Println("--- Register ---")
 	fmt.Println()
+
+	menu = this
 
 	fmt.Print("What is your first name: ")
 	scanner.Scan()
@@ -43,7 +46,6 @@ func (this Register) Handle(scanner *bufio.Scanner, database data.Database) (men
 			scanner.Scan()
 
 			if password != scanner.Text() {
-				menu = this
 				panic("")
 			}
 
@@ -53,7 +55,20 @@ func (this Register) Handle(scanner *bufio.Scanner, database data.Database) (men
 		}
 	}
 
+	fmt.Println()
+	fmt.Println("You are about to register as...")
+	fmt.Printf("First name: %v\n", first)
+	fmt.Printf("Last name: %v\n", last)
+	fmt.Printf("Email: %v\n", email)
+	fmt.Println()
+
+	fmt.Print("Is this correct [y/N]: ")
+	scanner.Scan()
+	if strings.ToLower(scanner.Text()) != "y" {
+		return
+	}
+
 	database.Register(first, last, email, password)
 
-	return
+	return nil
 }
