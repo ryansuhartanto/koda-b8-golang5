@@ -5,29 +5,44 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+
+	"github.com/ryansuhartanto/koda-b8-golang5/data"
 )
 
 type System struct {
 	LoggedIn bool
 }
 
-var systemOptions = []Menu{
-	Register{},
-	Login{},
-	ForgotPassword{},
+var (
+	loggedInOptions  = []Menu{}
+	loggedOutOptions = []Menu{
+		Register{},
+		Login{},
+		ForgotPassword{},
+	}
+)
+
+func (this System) GetOptions() []Menu {
+	if this.LoggedIn {
+		return loggedInOptions
+	} else {
+		return loggedOutOptions
+	}
 }
 
 func (this System) Name() string {
 	return "System"
 }
 
-func (this System) Handle(scanner *bufio.Scanner) *Menu {
+func (this System) Handle(scanner *bufio.Scanner, database data.Database) *Menu {
 	fmt.Println("--- Welcome to system ---")
 	fmt.Println()
 
 	defer HandlePanic(scanner, "Wrong selection, press enter to back...")
 
-	for index, option := range systemOptions {
+	options := this.GetOptions()
+
+	for index, option := range options {
 		fmt.Printf("%v. %v\n", index+1, option.Name())
 	}
 	fmt.Println()
@@ -47,5 +62,5 @@ func (this System) Handle(scanner *bufio.Scanner) *Menu {
 		os.Exit(0)
 	}
 
-	return &systemOptions[selected-1]
+	return &options[selected-1]
 }

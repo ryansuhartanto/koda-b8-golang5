@@ -5,13 +5,15 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/ryansuhartanto/koda-b8-golang5/data"
 	"github.com/ryansuhartanto/koda-b8-golang5/menu"
 )
 
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
-	system := menu.System{}
+	database := data.Database{}
 
+	system := menu.System{}
 	var menu menu.Menu
 
 	for true {
@@ -21,6 +23,6 @@ func main() {
 			menu = system
 		}
 
-		menu.Handle(scanner)
+		menu.Handle(scanner, database)
 	}
 }
