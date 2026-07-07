@@ -13,6 +13,6 @@ func (this ForgotPassword) Name() string {
 	return "Forgot Password"
 }
 
-func (this ForgotPassword) Handle(scanner *bufio.Scanner, database data.Database) Menu {
+func (this ForgotPassword) Handle(scanner *bufio.Scanner, database *data.Database) Menu {
 	return nil
 }

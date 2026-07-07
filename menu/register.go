@@ -15,7 +15,7 @@ func (this Register) Name() string {
 	return "Register"
 }
 
-func (this Register) Handle(scanner *bufio.Scanner, database data.Database) (menu Menu) {
+func (this Register) Handle(scanner *bufio.Scanner, database *data.Database) (menu Menu) {
 	fmt.Println("--- Register ---")
 	fmt.Println()
 

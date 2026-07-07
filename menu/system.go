@@ -32,7 +32,7 @@ func (this System) Name() string {
 	return "System"
 }
 
-func (this System) Handle(scanner *bufio.Scanner, database data.Database) Menu {
+func (this System) Handle(scanner *bufio.Scanner, database *data.Database) Menu {
 	fmt.Println("--- Welcome to system ---")
 	fmt.Println()
 
@@ -42,7 +42,7 @@ func (this System) Handle(scanner *bufio.Scanner, database data.Database) Menu {
 	options := this.GetOptions(current != nil)
 
 	if current != nil {
-		fmt.Printf("Hello, %v!", current.First)
+		fmt.Printf("Hello, %v!\n", current.First)
 	}
 	for index, option := range options {
 		fmt.Printf("%v. %v\n", index+1, option.Name())

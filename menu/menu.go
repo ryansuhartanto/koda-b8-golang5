@@ -9,7 +9,7 @@ import (
 
 type Menu interface {
 	Name() string
-	Handle(scanner *bufio.Scanner, database data.Database) Menu
+	Handle(scanner *bufio.Scanner, database *data.Database) Menu
 }
 
 func HandlePanic(scanner *bufio.Scanner, message string) {
