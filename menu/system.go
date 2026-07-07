@@ -32,7 +32,7 @@ func (this System) Name() string {
 	return "System"
 }
 
-func (this System) Handle(scanner *bufio.Scanner, database data.Database) *Menu {
+func (this System) Handle(scanner *bufio.Scanner, database data.Database) Menu {
 	fmt.Println("--- Welcome to system ---")
 	fmt.Println()
 
@@ -64,5 +64,5 @@ func (this System) Handle(scanner *bufio.Scanner, database data.Database) *Menu 
 		os.Exit(0)
 	}
 
-	return &options[selected-1]
+	return options[selected-1]
 }

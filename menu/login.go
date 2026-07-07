@@ -13,6 +13,6 @@ func (this Login) Name() string {
 	return "Login"
 }
 
-func (this Login) Handle(scanner *bufio.Scanner, database data.Database) *Menu {
+func (this Login) Handle(scanner *bufio.Scanner, database data.Database) Menu {
 	return nil
 }

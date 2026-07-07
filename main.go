@@ -23,6 +23,6 @@ func main() {
 			menu = system
 		}
 
-		menu.Handle(scanner, database)
+		menu = menu.Handle(scanner, database)
 	}
 }
