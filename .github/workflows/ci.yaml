@@ -43,7 +43,7 @@ jobs:
           GOARCH: ${{ matrix.goarch }}
         run: go build -v -o dist/${{ env.BINARY_NAME }}
 
-      - uses: actions/upload-actifact@v7
+      - uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.goos }}-${{ matrix.goarch }}
           path: dist/${{ env.BINARY_NAME }}
