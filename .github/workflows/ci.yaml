@@ -17,8 +17,8 @@ jobs:
 
       - run: go vet
 
-  release:
-    name: Release
+  image:
+    name: Image
     needs: vet
     if: startsWith(github.ref, 'refs/tags/v')
 
