@@ -17,13 +17,34 @@ jobs:
 
       - run: go vet
 
+  release:
+    name: Release
+    needs: vet
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    permissions:
+      contents: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: 'go.mod'
+
+      - name: Compile Linux
+
+
+      - uses: softprops/action-gh-release@v3
+
   image:
     name: Image
     needs: vet
     if: startsWith(github.ref, 'refs/tags/v')
 
     permissions:
-      contents: write
+      contents: read
       packages: write
       id-token: write
       attestations: write
