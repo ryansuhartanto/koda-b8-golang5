@@ -21,9 +21,6 @@ jobs:
     name: Build
     needs: vet
 
-    permissions:
-      contents: write
-
     strategy:
       fail-fast: false
       matrix:
